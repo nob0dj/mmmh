@@ -1,4 +1,8 @@
 from datetime import datetime
+import pytz
+
+# 한국 시간대 객체 생성
+kst = pytz.timezone('Asia/Seoul')
 
 def get_time_slot(state: dict) -> dict:
     """현재 시각을 기준으로 시간대를 분류하여 상태에 추가합니다.
@@ -9,7 +13,7 @@ def get_time_slot(state: dict) -> dict:
     - 16:00 ~ 22:00 -> '저녁'
     - 22:00 ~ 05:00 -> '야간'
     """
-    hour = datetime.now().hour  # 현재 시간의 시(hour) 정보를 가져옵니다.
+    hour = datetime.now(kst).hour  # 현재 시간의 시(hour) 정보를 가져옵니다.
 
     # 시간에 따라 적절한 시간대를 반환합니다.
     if 5 <= hour < 11:
