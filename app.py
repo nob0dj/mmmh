@@ -1,12 +1,24 @@
 import streamlit as st
 from run_graph import graph
 
+from datetime import datetime
+import pytz
+
+# 한국 시간대 객체 생성
+kst = pytz.timezone('Asia/Seoul')
+
+# 현재 시간을 한국 시간으로 변환
+current_time = datetime.now(kst)
+
+
+
 # Streamlit 웹 앱 페이지 설정
 st.set_page_config(page_title="아, 뭐 먹지? 뭐 하지?", page_icon="🍽", layout="wide")
 
 # 페이지 제목
 st.title("🍽 아, 뭐 먹지? 뭐 하지?")
 st.markdown("날씨, 계절, 시간대, 사용자 입력에 따라 음식 또는 활동을 추천해드립니다!")
+st.write(f"현재 시간: {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
 
 # --- 입력 영역: 왼쪽 사이드바에 사용자 입력 폼 구성 ---
 with st.sidebar:
